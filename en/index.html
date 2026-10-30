@@ -3,26 +3,373 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GESAGT.</title>
+<title>GESAGT. Meeting notes on your iPhone</title>
 <meta name="description" content="Meeting notes, no cloud: transcript, summary and to-dos on your iPhone.">
-<link rel="icon" href="../img/icon.png">
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" href=".img/icon.png">
+<style>
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url(.fonts/source-serif-4-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url(.fonts/source-serif-4-italic.woff2) format("woff2")}
+</style>
+<style>
+body{margin:0;background:#fff3e7;color:#0f1729;font-family:ui-serif,"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#c34112;text-underline-offset:3px}a:hover{color:#8f2e0b}
+::selection{background:#f6b8a1;color:#0f1729}
+:focus-visible{outline:2px solid #c34112;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.ui{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.label{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px;font-weight:600;color:#535868;letter-spacing:.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;border-radius:999px;background:#f4a68a;color:#151c2e;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;font-weight:600;text-decoration:none}
+.btn:hover{background:#f19776;color:#151c2e}
+.hero{display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start;padding-block:56px 120px}
+.hero-copy{flex:1 1 380px;min-width:0;padding-top:48px;position:sticky;top:24px}
+.appwrap{flex:0 1 430px;min-width:0;margin:0 0 0 auto}
+.app{position:relative;overflow:hidden;background:#fff3e7;color:#000;border-radius:36px;border:1px solid rgba(60,60,67,.14);box-shadow:0 24px 48px rgba(93,58,50,.16),0 4px 10px rgba(93,58,50,.08);padding:20px 22px 24px;box-sizing:border-box}
+.app-bar{display:flex;justify-content:flex-end}
+.glass{display:inline-flex;align-items:center;gap:22px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(60,60,67,.12);color:#c34112}
+.app .app-title{font-size:30px;font-weight:600;line-height:1.15;letter-spacing:0;margin:12px 0 0;max-width:none}
+.app-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.achip{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 14px;border-radius:999px;background:#fff;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#000}
+.app-h{font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;margin:22px 0 6px}
+.app-text{font-size:17px;line-height:1.45}
+.app-list{margin:0;padding-left:18px;font-size:17px;line-height:1.45}
+.acard{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;align-items:center;background:#fff;border-radius:16px;padding:6px 14px 6px 4px;margin-top:8px}
+.check{width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;padding:0;cursor:pointer}
+.box{width:22px;height:22px;border-radius:5px;border:2px solid #c34112;box-sizing:border-box;display:grid;place-items:center}
+.atodo{border:0;background:transparent;text-align:left;padding:8px 0;min-height:44px;cursor:pointer;color:inherit;font:inherit}
+.atext{display:block;font-family:ui-serif,"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.35}
+.ameta{display:block;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;margin-top:3px}
+.handoff{display:grid;place-items:center;color:#c34112}
+.app-tr summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:44px;margin-top:14px;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;cursor:pointer}
+.app-tr summary::-webkit-details-marker{display:none}
+.app-tr[open] summary svg{transform:rotate(180deg)}
+.tline{margin-top:12px;font-size:17px;line-height:1.4}
+.tline b{font:600 15px system-ui,-apple-system,"Segoe UI",sans-serif}
+.tline span{font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;margin-left:8px;font-variant-numeric:tabular-nums}
+.fertig{display:flex;align-items:center;justify-content:center;min-height:54px;margin-top:24px;border-radius:999px;background:#f4a68a;color:#151c2e;font:600 17px system-ui,-apple-system,"Segoe UI",sans-serif}
+.fcap{font:13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;text-align:center;margin-top:8px}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.18)}
+.asheet{position:absolute;left:8px;right:8px;bottom:8px;background:#fff3e7;border-radius:30px;padding:8px 18px 24px;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.grab{width:36px;height:5px;border-radius:3px;background:rgba(60,60,67,.3);margin:0 auto 6px}
+.shead{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center}
+.sclose{width:44px;height:44px;border-radius:50%;border:1px solid rgba(60,60,67,.12);background:rgba(255,255,255,.8);display:grid;place-items:center;cursor:pointer;color:#000;padding:0}
+.stitle{text-align:center;font:600 17px system-ui,-apple-system,"Segoe UI",sans-serif}
+.sgroup{background:#fff;border-radius:16px;margin-top:14px;padding:0 16px}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;border-top:1px solid rgba(60,60,67,.12);font:17px system-ui,-apple-system,"Segoe UI",sans-serif}
+.srow:first-child{border-top:0;font-family:ui-serif,"Source Serif 4",Georgia,serif}
+.sval{color:#c34112}
+.sdate{background:rgba(120,120,128,.12);border-radius:8px;padding:6px 10px}
+.said{margin-top:18px}
+.said-h,.said-t{font:13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;font-variant-numeric:tabular-nums}
+.said-q{font-style:italic;font-size:17px;line-height:1.45;margin:4px 0}
+.cap{font:14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#535868;line-height:1.5;margin-top:14px;text-align:center}
+@keyframes sheetup{from{transform:translateY(32px)}to{transform:none}}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 14px;border-radius:999px;background:#fff3e7;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#0f1729}
+.top{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:112px;border-top:1px solid #e6d5c4}
+.topno{font:600 14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#c34112;font-variant-numeric:tabular-nums;padding-top:14px}
+h1,h2{font-weight:600;margin:0;letter-spacing:-.015em}
+h1{font-size:58px;line-height:1.06}
+.h-big{font-size:56px;line-height:1.08}
+.h-close{font-size:48px;max-width:20ch}
+h2{font-size:42px;line-height:1.15;max-width:22ch}
+p{margin:0}
+.body{font-size:19px;line-height:1.6;max-width:62ch;color:#2a3142}
+.steps{list-style:none;margin:40px 0 0;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:22px 0;border-bottom:1px solid #e6d5c4;font-size:19px;line-height:1.6;max-width:820px}
+.steps li::before{counter-increment:s;content:counter(s) ".";font:600 15px system-ui,-apple-system,sans-serif;color:#c34112;padding-top:5px}
+.split{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;margin-top:40px}
+.split > *{flex:1 1 380px;min-width:0}
+pre{margin:0;padding:28px 30px;background:#0f1729;color:#e8e8ec;border-radius:12px;font:14px/1.7 ui-monospace,"SF Mono",Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.night{background:#0f1729;color:#e8e8ec;border-radius:12px;padding:56px;box-sizing:border-box;margin-top:40px}
+.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+.facts li{padding:18px 0;border-top:1px solid rgba(255,255,255,.14);font-size:18px;line-height:1.55}
+.facts li:nth-child(-n+2){border-top:0;padding-top:0}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:40px}
+.plans > div{padding:8px 48px 8px 0}
+.plans > div + div{padding:8px 0 8px 48px;border-left:1px solid #e6d5c4}
+.plans ul{margin:20px 0 0;padding:0 0 0 20px;font-size:18px;line-height:1.55}
+.plans li{padding:6px 0}
+.close{padding-block:120px 96px;border-top:1px solid #e6d5c4}
+.sign{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;margin-top:48px}
+.signline{flex:1 1 320px;border-bottom:1px solid #0f1729;padding-bottom:10px;font-size:26px;font-style:italic}
+.foot{display:flex;flex-wrap:wrap;gap:12px 28px;padding-block:32px 48px;border-top:1px solid #e6d5c4;font:15px system-ui,-apple-system,sans-serif;color:#535868}
+.foot a{color:#535868}.foot a:hover{color:#0f1729}
+@media (prefers-reduced-motion:no-preference){.asheet{animation:sheetup .25s ease-out}.app-tr summary svg{transition:transform .2s ease-out}}
+@media (max-width:760px){
+.wrap{padding-inline:16px}
+.hero{gap:40px;padding-block:24px 72px}.hero-copy{padding-top:16px;position:static}
+h1{font-size:42px}h2{font-size:32px}.h-big{font-size:38px}.h-close{font-size:36px}
+.appwrap{flex-basis:100%;margin:0}
+.app{border-radius:28px;padding:16px 14px 20px}
+.top{grid-template-columns:minmax(0,1fr);gap:8px;padding-block:72px}.topno{padding-top:0}
+.body,.steps li{font-size:17px}
+.steps li{grid-template-columns:36px minmax(0,1fr)}
+.night{padding:32px 20px}
+.facts{grid-template-columns:minmax(0,1fr)}.facts li:nth-child(2){border-top:1px solid rgba(255,255,255,.14);padding-top:18px}
+.plans{grid-template-columns:minmax(0,1fr)}
+.plans > div,.plans > div + div{padding:8px 0;border-left:0}
+.plans > div + div{margin-top:32px;padding-top:32px;border-top:1px solid #e6d5c4}
+.close{padding-block:72px 56px}
+}
+[hidden]{display:none!important}
+.check[aria-pressed="true"] .box{background:#c34112}
+.check[aria-pressed="false"] .box svg{display:none}
+.check[aria-pressed="true"]+.atodo .atext{text-decoration:line-through;color:#3c3c43}
+</style>
 </head>
 <body>
+<div style="width: 100%">
+<header class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 24px">
+<a href="../en/" style="font-size: 26px; font-weight: 600; color: #0f1729; text-decoration: none; letter-spacing: -0.01em">GESAGT.</a>
+<nav aria-label="Main menu" class="ui" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 16px">
+<a href="../en/privacy/" style="color: #0f1729">Privacy</a>
+<a href="../en/support/" style="color: #0f1729">Support</a>
+<a href="../" lang="de" style="color: #0f1729">Deutsch</a>
+</nav>
+</header>
+
 <main>
-<nav><a class="brand" href="../en/"><img src="../img/icon.png" alt="">GESAGT.</a><a href="../en/privacy/">Privacy</a><a href="../en/support/">Support</a><a href="../">Deutsch</a></nav>
-<div class="hero"><img src="../img/icon.png" alt="GESAGT. app icon">
-<h1>GESAGT.</h1>
-<p class="lead">Records meetings, calls and dictation and turns them into a note with transcript, summary and to-dos. Everything runs on your iPhone.</p>
-<p class="meta">For iPhone with iOS 27. Coming soon to the App Store.</p></div>
-<div class="shots"><img src="../img/en-01-liste.jpg" alt="List of notes" loading="lazy"><img src="../img/en-03-ergebnis.jpg" alt="Summary with decisions" loading="lazy"><img src="../img/en-06-vault.jpg" alt="Choosing the Obsidian vault" loading="lazy"></div>
-<h2>Who said what</h2>
-<p>GESAGT. separates the speakers and recognizes you by your voice. You name everyone else after the recording. Every to-do points to the moment in the conversation it came from.</p>
-<h2>Straight into Obsidian</h2>
-<p>Every note lands in your vault as a Markdown file, with frontmatter, to-dos in Tasks plugin format and the transcript in a collapsible callout.</p>
-<h2>No account, no upload</h2>
-<p>The app never sends a recording or any text to a server. Audio is deleted as soon as the note is done. The details are in the <a href="privacy/">privacy policy</a>.</p>
-<footer><span>© 2026 Laszlo Endler</span><a href="../en/privacy/">Privacy</a><a href="../en/support/">Support</a><a href="../impressum/">Legal notice (German)</a></footer>
+<section class="wrap hero" aria-labelledby="offer">
+<div class="hero-copy">
+<h1 id="offer">The minutes write themselves on your iPhone.</h1>
+<p class="body" style="margin-top: 28px; font-size: 21px">GESAGT. records meetings, calls and dictation. Afterwards you see who said what, what was decided, and who does what by when. Everything runs on the device, with no account and no upload.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 40px">
+<a class="btn" href="https://apps.apple.com/app/id6823530298">Download on the App Store</a>
+</div>
+<p class="ui" style="margin-top: 16px; font-size: 15px; line-height: 1.5; color: #535868; max-width: 40ch">Free to download. GESAGT. Pro is a one-time purchase you can try free for 14 days. For iPhone with iOS 27.</p>
+</div>
+
+<figure class="appwrap" style="margin-top: 0; margin-bottom: 0">
+<div class="app" aria-label="Example: a note in GESAGT.">
+<div class="app-bar" aria-hidden="true"><span class="glass"><svg width="20" height="22" viewBox="0 0 20 22"><path d="M10 14V2M5.5 6.5L10 2l4.5 4.5M4 10H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="22" height="6" viewBox="0 0 22 6"><circle cx="3" cy="3" r="2.4" fill="currentColor"></circle><circle cx="11" cy="3" r="2.4" fill="currentColor"></circle><circle cx="19" cy="3" r="2.4" fill="currentColor"></circle></svg></span></div>
+<h2 class="app-title">Trade fair booth</h2>
+<div class="app-chips">
+<span class="achip">Me</span>
+<span class="achip">Mara Lindqvist</span>
+<span class="achip" style="color: #c34112"><svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"></path></svg>Speaker 3</span>
+</div>
+<h3 class="app-h">Summary</h3>
+<p class="app-text">The booth goes on the corner space in Hall 4. Mara Lindqvist talked to the organizer, and the twelve square meters are still free. Speaker 3 is getting new quotes for the back wall, because the current supplier has raised prices and now needs three weeks to deliver.</p>
+<h3 class="app-h">Decisions</h3>
+<ul class="app-list">
+<li>The booth goes on the corner space in Hall 4.</li>
+<li>The flyers get reprinted.</li>
+</ul>
+<h3 class="app-h">To-dos</h3>
+
+<div class="acard">
+<button type="button" class="check" aria-pressed="false" aria-label="Completed: Confirm booth space"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<button type="button" class="atodo" aria-haspopup="dialog"><span class="atext">Confirm booth space</span><span class="ameta">Mara Lindqvist · Tue, Oct 20</span></button>
+<span class="handoff" title="Hand off" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 15l6-6M10 9h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+
+<div class="acard">
+<button type="button" class="check" aria-pressed="false" aria-label="Completed: Get a quote for the back wall"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<button type="button" class="atodo" aria-haspopup="dialog"><span class="atext">Get a quote for the back wall</span><span class="ameta">Speaker 3 · by end of week</span></button>
+<span class="handoff" title="Hand off" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 15l6-6M10 9h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+
+<div class="acard">
+<button type="button" class="check" aria-pressed="true" aria-label="Completed: Reprint flyers"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<button type="button" class="atodo" aria-haspopup="dialog"><span class="atext">Reprint flyers</span><span class="ameta">Me · Fri, Oct 23</span></button>
+<span class="handoff" title="Hand off" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 15l6-6M10 9h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+
+<details class="app-tr">
+<summary>Transcript<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
+
+<p class="tline"><b>Me</b><span>00:04</span><br>Let’s get started. Today we need to settle the booth space for the trade fair.</p>
+
+<p class="tline"><b>Mara Lindqvist</b><span>00:11</span><br>I talked to the organizer. The corner space in Hall 4 is still free, twelve square meters.</p>
+
+<p class="tline"><b>Speaker 3</b><span>00:21</span><br>We need a new quote for the back wall. The old supplier raised prices, and delivery now takes three weeks. I’ll ask two other suppliers by the end of the week.</p>
+
+<p class="tline"><b>Me + Speaker 3, overlapping</b><span>00:36</span><br>Yes, exactly, do that.</p>
+
+<p class="tline"><b>Me</b><span>00:39</span><br>Good, then we take the corner space. Mara, can you confirm it by next Tuesday?</p>
+
+<p class="tline"><b>Mara Lindqvist</b><span>00:47</span><br>Will do. The flyers are almost gone, we should reprint.</p>
+
+<p class="tline"><b>Recording interrupted</b><span>00:57</span><br></p>
+
+<p class="tline"><b>Me</b><span>00:57</span><br>I’ll reprint the flyers by Friday. We still need to sort out who helps at the booth.</p>
+
+</details>
+<div class="fertig" aria-hidden="true">Done</div>
+<p class="fcap">Deletes the recording. The note is kept.</p>
+<div class="sheetbox" hidden>
+<div class="scrim" aria-hidden="true"></div>
+<div class="asheet" role="dialog" aria-labelledby="sheet-title">
+<div class="grab" aria-hidden="true"></div>
+<div class="shead">
+<button type="button" class="sclose" aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button>
+<span id="sheet-title" class="stitle">To-do</span>
+<span aria-hidden="true"></span>
+</div>
+<div class="sgroup">
+<div class="srow"><span data-f="what"></span></div>
+<div class="srow"><span>Person</span><span class="sval"><span data-f="who"></span></span></div>
+<div class="srow" data-date><span>Date</span><span class="sdate"><span data-f="date"></span></span></div>
+</div>
+<div class="said">
+<p class="said-h">Said</p>
+<p class="said-q">“<span data-f="quote"></span>”</p>
+<p class="said-t">at <span data-f="at"></span></p>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="cap">Example. Tap a to-do: the app shows where it was said.</figcaption>
+</figure>
+</section>
+
+<section class="wrap top" aria-labelledby="item1">
+<span class="topno">Item 1</span>
+<div>
+<h2 id="item1">You record, the app takes the minutes.</h2>
+<ol class="steps">
+<li><span>Tap Record and put your iPhone on the table. Ask everyone in the conversation first. GESAGT. reminds you.</span></li>
+<li><span>When the conversation ends, the app detects the language, English or German, separates the speakers and writes the note. Meetings get decisions, open points and to-dos with owner and due date. A call gets its purpose and agreements, a dictation gets your thoughts in order.</span></li>
+<li><span>Tap Done. The recording is deleted, the note stays.</span></li>
+</ol>
+<p class="body" style="margin-top: 28px; font-style: italic">If the app can't find the moment a to-do came from, it drops the to-do before it reaches your list.</p>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="item2">
+<span class="topno">Item 2</span>
+<div>
+<h2 id="item2" class="h-big">In the transcript, you're “Me”.</h2>
+<p class="body" style="margin-top: 28px">You read your voice in once during setup. You name everyone else after the recording, with a short audio sample to help. The name then appears wherever that person shows up, including their to-dos.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 32px" aria-label="Example: speakers in a note">
+<span class="chip" style="background: #fff">Me</span>
+<span class="chip" style="background: #fff">Mara Lindqvist</span>
+<span class="chip" style="background: #fff; color: #c34112"><svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"></path></svg>Speaker 3</span>
+<span class="ui" style="font-size: 14px; color: #535868">Play the sample, then name them</span>
+</div>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="item3">
+<span class="topno">Item 3</span>
+<div>
+<h2 id="item3">The note lands in your Obsidian vault.</h2>
+<div class="split">
+<div>
+<p class="body">Pick your vault once. Every note becomes a Markdown file there, with frontmatter, to-dos in Tasks plugin format and the transcript in a collapsible callout.</p>
+<p class="body" style="margin-top: 20px">Rename someone later and the app rewrites the same file. Anything you added in Obsidian yourself stays put.</p>
+<p class="ui" style="margin-top: 20px; font-size: 15px; line-height: 1.5; color: #535868">Sharing as Markdown always works. Writing to the vault automatically is part of GESAGT. Pro.</p>
+</div>
+<pre aria-label="Example of a Markdown file">---
+date: 2026-10-13T14:30
+duration: 72
+type: meeting
+speakers: [Me, Mara Lindqvist, Speaker 3]
+tags: [mitschrift]
+---
+# Trade fair booth
+
+## Decisions
+
+- The booth goes on the corner space in Hall 4.
+- The flyers get reprinted.
+
+## Todos
+
+- [ ] Confirm booth space [[Mara Lindqvist]] 📅 2026-10-20
+- [ ] Get a quote for the back wall (Speaker 3)
+- [ ] Reprint flyers (Me) 📅 2026-10-23
+
+&gt; [!note]- Transcript
+&gt; **[[Mara Lindqvist]]** (00:11): I talked to the organizer.</pre>
+</div>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="item4">
+<span class="topno">Item 4</span>
+<div>
+<h2 id="item4">What's said in the room stays on your iPhone.</h2>
+<div class="night">
+<ul class="facts">
+<li>The app uploads nothing. A note only goes where you send it.</li>
+<li>Audio is deleted as soon as you finish the note, after 24 hours at the latest.</li>
+<li>The history covers 30 days, adjustable, and is excluded from iCloud backup.</li>
+<li>Face ID can lock the app if you want.</li>
+<li>The speech models are downloaded once from Apple by the system. After that everything works in airplane mode.</li>
+<li>No account, no sign-in, no server listening in.</li>
+</ul>
+<p class="ui" style="margin-top: 32px; font-size: 15px"><a href="../en/privacy/" style="color: #f4a68a">Read the privacy policy</a></p>
+</div>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="item5">
+<span class="topno">Item 5</span>
+<div>
+<h2 id="item5">Start free, buy Pro once.</h2>
+<div class="plans">
+<div>
+<p style="font-size: 26px; font-weight: 600">Free</p>
+<ul>
+<li>Up to 10 minutes at a time</li>
+<li>Speakers, summary and to-dos</li>
+<li>Share every note as Markdown</li>
+</ul>
+</div>
+<div>
+<p style="font-size: 26px; font-weight: 600">Pro <span class="ui" style="font-size: 18px; font-weight: 600; color: #c34112; margin-left: 8px">one-time purchase</span></p>
+<ul>
+<li>No subscription, works for your whole family</li>
+<li>No time limit</li>
+<li>Notes go to Obsidian automatically</li>
+<li>Your word list picks up names from your vault</li>
+<li>Hand to-dos to Reminders or JETZT.</li>
+<li>Start from the Action button, Control Center, a widget, Shortcuts or Siri, even while your iPhone is locked</li>
+</ul>
+<p class="ui" style="margin-top: 16px; font-size: 15px; color: #535868">Try Pro free for 14 days. The trial ends by itself.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="wrap close" aria-labelledby="closing">
+<h2 id="closing" class="h-close">Your next meeting takes its own minutes.</h2>
+<div class="sign">
+<div class="signline" aria-hidden="true">GESAGT.</div>
+<a class="btn" href="https://apps.apple.com/app/id6823530298">Download on the App Store</a>
+</div>
+<p class="ui" style="margin-top: 20px; font-size: 15px; line-height: 1.55; color: #535868; max-width: 70ch">For iPhone with iOS 27. Summary and to-dos need Apple Intelligence; without it you get the transcript with speakers.</p>
+</section>
 </main>
+
+<footer class="wrap foot">
+<span>© 2026 Laszlo Endler</span>
+<a href="../en/privacy/">Privacy</a>
+<a href="../en/support/">Support</a>
+<a href="../impressum/">Legal notice (German)</a>
+<a href="../" lang="de">Deutsch</a>
+</footer>
+</div>
+<script>
+(() => {
+  const T = [{"what": "Confirm booth space", "who": "Mara Lindqvist", "date": "Oct 20, 2026", "quote": "Mara, can you confirm it by next Tuesday?", "at": "00:39"}, {"what": "Get a quote for the back wall", "who": "Speaker 3", "date": "", "quote": "I’ll ask two other suppliers by the end of the week.", "at": "00:21"}, {"what": "Reprint flyers", "who": "Me", "date": "Oct 23, 2026", "quote": "I’ll reprint the flyers by Friday.", "at": "00:57"}];
+  const box = document.querySelector('.sheetbox'), sheet = box.querySelector('.asheet');
+  let from = null;
+  const close = () => { box.hidden = true; if (from) from.focus(); };
+  document.querySelectorAll('.check').forEach((b) => b.addEventListener('click', () =>
+    b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true')));
+  document.querySelectorAll('.atodo').forEach((b, i) => b.addEventListener('click', () => {
+    const t = T[i];
+    sheet.querySelectorAll('[data-f]').forEach((el) => { el.textContent = t[el.dataset.f]; });
+    sheet.querySelector('[data-date]').hidden = !t.date;
+    from = b;
+    box.hidden = false;
+    sheet.querySelector('.sclose').focus();
+  }));
+  sheet.querySelector('.sclose').addEventListener('click', close);
+  box.querySelector('.scrim').addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !box.hidden) close(); });
+})();
+</script>
 </body>
 </html>

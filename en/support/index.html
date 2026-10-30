@@ -5,30 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Support · GESAGT.</title>
 <meta name="description" content="Help and contact for GESAGT.">
-<link rel="icon" href="../../img/icon.png">
-<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="..img/icon.png">
+<style>
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url(..fonts/source-serif-4-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url(..fonts/source-serif-4-italic.woff2) format("woff2")}
+</style>
+<style>
+body{margin:0;background:#fff3e7;color:#0f1729;font-family:ui-serif,"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#c34112;text-underline-offset:3px}a:hover{color:#8f2e0b}
+::selection{background:#f6b8a1;color:#0f1729}
+:focus-visible{outline:2px solid #c34112;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.ui{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.nav a{color:#0f1729}.nav a[aria-current="page"]{color:#c34112;text-decoration-thickness:2px}
+.intro{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:64px 80px}
+.sec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:56px 96px;border-top:1px solid #e6d5c4}
+.label{font:600 15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#c34112;padding-top:6px}
+h1,h2{font-weight:600;margin:0;letter-spacing:-.015em}
+h1{font-size:54px;line-height:1.08}
+p{margin:0}
+.lead{font-size:23px;line-height:1.55;max-width:40ch;margin-top:20px}
+.mail{display:inline-block;margin-top:36px;font-size:34px;font-weight:600;letter-spacing:-.01em;line-height:1.2;overflow-wrap:anywhere}
+.hint{font-size:18px;line-height:1.65;color:#2a3142;max-width:56ch;margin-top:20px}
+.faq{max-width:760px}
+details{border-bottom:1px solid #e6d5c4}
+details:first-child{border-top:1px solid #e6d5c4}
+summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding-block:14px;cursor:pointer;font-size:22px;font-weight:600;line-height:1.3}
+summary::-webkit-details-marker{display:none}
+summary svg{flex:none;color:#c34112}
+details[open] summary svg{transform:rotate(180deg)}
+details p{font-size:18px;line-height:1.65;color:#2a3142;max-width:62ch;padding-bottom:24px}
+.foot{display:flex;flex-wrap:wrap;gap:12px 28px;padding-block:32px 48px;border-top:1px solid #e6d5c4;font:15px system-ui,-apple-system,sans-serif;color:#535868}
+.foot a{color:#535868}.foot a:hover{color:#0f1729}
+@media (prefers-reduced-motion:no-preference){summary svg{transition:transform .2s ease-out}}
+@media (max-width:760px){
+.wrap{padding-inline:16px}
+.intro,.sec{grid-template-columns:minmax(0,1fr);gap:8px}
+.intro{padding-block:32px 56px}.sec{padding-block:40px 64px}
+.label{padding-top:0;margin-bottom:8px}
+h1{font-size:38px}
+.lead{font-size:20px}
+.mail{font-size:26px}
+summary{font-size:19px}
+details p,.hint{font-size:17px}
+}
+</style>
 </head>
 <body>
-<main>
-<nav><a class="brand" href="../../en/"><img src="../../img/icon.png" alt="">GESAGT.</a><a href="../../en/privacy/">Privacy</a><a href="../../en/support/">Support</a><a href="../../">Deutsch</a></nav>
-<h1>Support</h1>
-<p class="meta">Questions, bugs or requests for GESAGT.</p>
-<div class="box"><p>Email me at <a href="mailto:laszloendler@proton.me">laszloendler@proton.me</a>. For a bug, it helps to mention which iPhone you have and what you were doing.</p></div>
+<div style="width: 100%">
+<header class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 24px">
+<a href="../../en/" style="font-size: 26px; font-weight: 600; color: #0f1729; text-decoration: none; letter-spacing: -0.01em">GESAGT.</a>
+<nav aria-label="Main menu" class="ui nav" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 16px">
+<a href="../../en/privacy/">Privacy</a>
+<a href="../../en/support/" aria-current="page">Support</a>
+<a href="../../support/" lang="de">Deutsch</a>
+</nav>
+</header>
 
-<h2>Frequently asked questions</h2>
-<h3>The speech models won't download.</h3>
+<main>
+<section class="wrap intro" aria-labelledby="title">
+<span aria-hidden="true"></span>
+<div>
+<h1 id="title">Support</h1>
+<p class="lead">Questions, bugs or requests for GESAGT.</p>
+<a class="mail" href="mailto:laszloendler@proton.me">laszloendler@proton.me</a>
+<p class="hint">For a bug, it helps to mention which iPhone you have and what you were doing.</p>
+</div>
+</section>
+
+<section class="wrap sec" aria-labelledby="faq">
+<h2 id="faq" class="label">Frequently asked questions</h2>
+<div class="faq">
+<details open="">
+<summary>The speech models won't download.<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>iOS downloads the models in the background after installation. That needs an internet connection and free storage. Keep the app open on Wi-Fi for a moment. After that no network is needed.</p>
-<h3>Does recording continue when I lock my iPhone?</h3>
+</details>
+<details>
+<summary>Does recording continue when I lock my iPhone?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>Yes. Recording continues in the background and shows in the Dynamic Island and on the Lock Screen.</p>
-<h3>How do I connect my Obsidian vault?</h3>
+</details>
+<details>
+<summary>How do I connect my Obsidian vault?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>In Settings under “Vault”, choose your vault folder. GESAGT. creates a folder called “Mitschriften” there. Writing to the vault automatically is part of Pro; you can share any note without Pro.</p>
-<h3>How do I delete my voice profile?</h3>
+</details>
+<details>
+<summary>How do I delete my voice profile?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>In Settings, tap “Delete Voice Profile”. You then appear as a numbered speaker until you teach the app your voice again.</p>
-<h3>I bought Pro but it isn't unlocked.</h3>
+</details>
+<details>
+<summary>I bought Pro but it isn't unlocked.<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>Tap “Restore Purchase” in the Pro section of the app and sign in with the Apple ID you bought it with. Pro also works for your family through Family Sharing.</p>
-<h3>How do I get a refund?</h3>
+</details>
+<details>
+<summary>How do I get a refund?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>Refunds go through Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. I have no access to them.</p>
-<footer><span>© 2026 Laszlo Endler</span><a href="../../en/privacy/">Privacy</a><a href="../../en/support/">Support</a><a href="../../impressum/">Legal notice (German)</a></footer>
+</details>
+</div>
+</section>
 </main>
+
+<footer class="wrap foot">
+<span>© 2026 Laszlo Endler</span>
+<a href="../../en/privacy/">Privacy</a>
+<a href="../../en/support/" aria-current="page">Support</a>
+<a href="../../impressum/">Legal notice (German)</a>
+<a href="../../support/" lang="de">Deutsch</a>
+</footer>
+</div>
+
 </body>
 </html>

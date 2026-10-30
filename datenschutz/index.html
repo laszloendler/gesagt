@@ -5,31 +5,107 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Datenschutz · GESAGT.</title>
 <meta name="description" content="Datenschutzerklärung der App GESAGT.">
-<link rel="icon" href="../img/icon.png">
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" href=".img/icon.png">
+<style>
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url(.fonts/source-serif-4-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url(.fonts/source-serif-4-italic.woff2) format("woff2")}
+</style>
+<style>
+body{margin:0;background:#fff3e7;color:#0f1729;font-family:ui-serif,"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#c34112;text-underline-offset:3px}a:hover{color:#8f2e0b}
+::selection{background:#f6b8a1;color:#0f1729}
+:focus-visible{outline:2px solid #c34112;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.ui{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.nav a{color:#0f1729}.nav a[aria-current="page"]{color:#c34112;text-decoration-thickness:2px}
+.intro{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:64px 72px}
+.sec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:44px;border-top:1px solid #e6d5c4}
+.num{font:600 15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#c34112;font-variant-numeric:tabular-nums;padding-top:8px}
+h1,h2{font-weight:600;margin:0;letter-spacing:-.015em}
+h1{font-size:54px;line-height:1.08}
+h2{font-size:28px;line-height:1.25}
+p,ul{margin:0}
+.col{max-width:66ch}
+.col p,.col li{font-size:18px;line-height:1.65;color:#2a3142}
+.col p + p,.col p + ul,.col ul + p{margin-top:16px}
+.col h2 + p,.col h2 + ul{margin-top:16px}
+.col ul{padding-left:20px}
+.col li + li{margin-top:12px}
+.lead{font-size:23px;line-height:1.55;color:#0f1729;max-width:40ch;margin-top:28px}
+.meta{font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#535868;margin-top:16px}
+.addr{font-style:normal;font-size:18px;line-height:1.65;margin-top:16px}
+.foot{display:flex;flex-wrap:wrap;gap:12px 28px;padding-block:32px 48px;border-top:1px solid #e6d5c4;font:15px system-ui,-apple-system,sans-serif;color:#535868}
+.foot a{color:#535868}.foot a:hover{color:#0f1729}
+@media (max-width:760px){
+.wrap{padding-inline:16px}
+.intro,.sec{grid-template-columns:minmax(0,1fr);gap:8px}
+.intro{padding-block:32px 48px}.sec{padding-block:36px}
+.num{padding-top:0}
+h1{font-size:38px}h2{font-size:24px}
+.lead{font-size:20px}
+.col p,.col li{font-size:17px}
+}
+</style>
 </head>
 <body>
+<div style="width: 100%">
+<header class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 24px">
+<a href="../" style="font-size: 26px; font-weight: 600; color: #0f1729; text-decoration: none; letter-spacing: -0.01em">GESAGT.</a>
+<nav aria-label="Hauptmenü" class="ui nav" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 16px">
+<a href="../datenschutz/" aria-current="page">Datenschutz</a>
+<a href="../support/">Support</a>
+<a href="../en/privacy/" lang="en">English</a>
+</nav>
+</header>
+
 <main>
-<nav><a class="brand" href="../"><img src="../img/icon.png" alt="">GESAGT.</a><a href="../datenschutz/">Datenschutz</a><a href="../support/">Support</a><a href="../en/">English</a></nav>
-<h1>Datenschutzerklärung</h1>
+<section class="wrap intro" aria-labelledby="titel">
+<span aria-hidden="true"></span>
+<div>
+<h1 id="titel">Datenschutzerklärung</h1>
 <p class="meta">GESAGT. für iPhone · Stand: Oktober 2026</p>
-<div class="box"><p>GESAGT. erhebt keine Daten. Aufnahmen, Transkripte und Notizen verarbeitet die App auf deinem iPhone. Es gibt kein Konto, keine Analyse und keine Werbung, und die App schickt keine Inhalte an einen Server. Ich als Entwickler bekomme deine Aufnahmen und Notizen nie zu sehen.</p></div>
+<p class="lead">GESAGT. erhebt keine Daten. Aufnahmen, Transkripte und Notizen verarbeitet die App auf deinem iPhone. Es gibt kein Konto, keine Analyse und keine Werbung, und die App schickt keine Inhalte an einen Server. Ich als Entwickler bekomme deine Aufnahmen und Notizen nie zu sehen.</p>
+</div>
+</section>
 
-<h2>1. Verantwortlicher</h2>
-<p>Laszlo Endler<br>Erfurter Str. 4<br>90522 Oberasbach<br>Deutschland<br>E-Mail: <a href="mailto:laszloendler@proton.me">laszloendler@proton.me</a></p>
+<section class="wrap sec" aria-labelledby="s1">
+<span class="num">1</span>
+<div class="col">
+<h2 id="s1">Verantwortlicher</h2>
+<address class="addr">Laszlo Endler<br>Erfurter Str. 4<br>90522 Oberasbach<br>Deutschland<br>E-Mail: <a href="mailto:laszloendler@proton.me">laszloendler@proton.me</a></address>
+</div>
+</section>
 
-<h2>2. Was auf deinem iPhone passiert</h2>
+<section class="wrap sec" aria-labelledby="s2">
+<span class="num">2</span>
+<div class="col">
+<h2 id="s2">Was auf deinem iPhone passiert</h2>
 <p>Das Mikrofon läuft nur, während du eine Aufnahme machst. Das Audio liegt im geschützten Speicher der App. Sobald du die Notiz abschließt, wird es gelöscht, spätestens nach 24 Stunden.</p>
 <p>Transkript, Sprechertrennung, Zusammenfassung und Todos berechnen Sprachmodelle, die auf dem iPhone laufen. Die fertigen Notizen bleiben 30 Tage in der App. Unter „Verlauf behalten“ in den Einstellungen kannst du die Frist ändern. Alle Daten der App sind vom iCloud-Backup ausgenommen. Auf Wunsch sperrt Face ID die App („Mit Face ID schützen“).</p>
 <p>Weil diese Daten dein Gerät nicht verlassen, verarbeite ich sie nicht. Du entscheidest allein, was damit passiert.</p>
+</div>
+</section>
 
-<h2>3. Stimmprofil</h2>
+<section class="wrap sec" aria-labelledby="s3">
+<span class="num">3</span>
+<div class="col">
+<h2 id="s3">Stimmprofil</h2>
 <p>Wenn du einwilligst, lernt GESAGT. deine Stimme ein, damit du im Transkript als „Ich“ erscheinst. Ein Stimmprofil ist ein biometrisches Merkmal im Sinne von Art. 9 DSGVO. Es wird nur auf diesem iPhone gespeichert und nie exportiert. Du kannst die Einwilligung jederzeit widerrufen, indem du in den Einstellungen „Stimmprofil löschen“ wählst. Ohne Stimmprofil funktioniert die App weiter, du erscheinst dann wie alle anderen als nummerierter Sprecher.</p>
+</div>
+</section>
 
-<h2>4. Aufnahmen anderer Personen</h2>
+<section class="wrap sec" aria-labelledby="s4">
+<span class="num">4</span>
+<div class="col">
+<h2 id="s4">Aufnahmen anderer Personen</h2>
 <p>Wer mitredet, wird mit aufgenommen. Frag deshalb vor jeder Aufnahme alle Beteiligten. Das heimliche Aufnehmen nicht öffentlich gesprochener Worte ist in Deutschland nach § 201 StGB strafbar. Die Namen der anderen Sprecher vergibst du selbst, sie stehen nur in deiner Notiz.</p>
+</div>
+</section>
 
-<h2>5. Wohin deine Notizen gehen</h2>
+<section class="wrap sec" aria-labelledby="s5">
+<span class="num">5</span>
+<div class="col">
+<h2 id="s5">Wohin deine Notizen gehen</h2>
 <p>Eine Notiz verlässt die App nur dorthin, wohin du sie schickst:</p>
 <ul>
 <li><strong>Obsidian-Vault:</strong> Die App schreibt in den Ordner, den du ausgewählt hast. Liegt er in iCloud Drive oder einem anderen Synchronisierungsdienst, überträgt dieser Dienst die Dateien nach seinen eigenen Bedingungen.</li>
@@ -38,22 +114,48 @@
 <li><strong>JETZT.:</strong> Ist die App JETZT. installiert, kannst du Todos über einen gemeinsamen Speicherbereich auf dem iPhone übergeben.</li>
 <li><strong>Spotlight:</strong> Titel und Zusammenfassung landen im Suchindex auf deinem iPhone. Ist die App mit Face ID gesperrt, fehlt dort die Zusammenfassung.</li>
 </ul>
+</div>
+</section>
 
-<h2>6. Verbindungen ins Internet</h2>
+<section class="wrap sec" aria-labelledby="s6">
+<span class="num">6</span>
+<div class="col">
+<h2 id="s6">Verbindungen ins Internet</h2>
 <p>GESAGT. baut selbst keine Verbindung zu eigenen Servern auf, es gibt keine. Zwei Vorgänge laufen über Apple:</p>
 <ul>
 <li><strong>Sprachmodelle:</strong> Nach der Installation lädt iOS die Modelle einmal von Apples Servern. Dabei sieht Apple wie bei jedem Download deine IP-Adresse. Inhalte aus der App werden nicht übertragen. Danach funktioniert die App auch im Flugmodus.</li>
 <li><strong>Kauf von GESAGT. Pro:</strong> Kauf und Zahlung wickelt Apple über den App Store ab. Ich erhalte keine Zahlungsdaten und keinen Namen, nur Apples zusammengefasste Verkaufszahlen.</li>
 </ul>
 <p>Für den App Store, die Familienfreigabe und Absturzberichte gilt die <a href="https://www.apple.com/de/legal/privacy/">Datenschutzrichtlinie von Apple</a>. Hast du in iOS erlaubt, Analysedaten mit Entwicklern zu teilen, gibt Apple mir anonyme Absturzberichte weiter.</p>
+</div>
+</section>
 
-<h2>7. Deine Rechte</h2>
+<section class="wrap sec" aria-labelledby="s7">
+<span class="num">7</span>
+<div class="col">
+<h2 id="s7">Deine Rechte</h2>
 <p>Du hast nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Eine Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3). Da ich keine Daten von dir speichere, wird eine Auskunft in der Regel leer sein. Löschst du die App, sind alle ihre Daten vom iPhone entfernt. Notizen in deinem Vault bleiben dort.</p>
 <p>Du kannst dich bei einer Datenschutzaufsichtsbehörde beschweren. Für mich zuständig ist das <a href="https://www.lda.bayern.de">Bayerische Landesamt für Datenschutzaufsicht</a>.</p>
+</div>
+</section>
 
-<h2>8. Änderungen</h2>
+<section class="wrap sec" aria-labelledby="s8">
+<span class="num">8</span>
+<div class="col">
+<h2 id="s8">Änderungen</h2>
 <p>Ändert sich, wie die App mit Daten umgeht, passe ich diese Seite an. Das Datum oben zeigt den Stand.</p>
-<footer><span>© 2026 Laszlo Endler</span><a href="../datenschutz/">Datenschutz</a><a href="../support/">Support</a><a href="../impressum/">Impressum</a></footer>
+</div>
+</section>
 </main>
+
+<footer class="wrap foot">
+<span>© 2026 Laszlo Endler</span>
+<a href="../datenschutz/" aria-current="page">Datenschutz</a>
+<a href="../support/">Support</a>
+<a href="../impressum/">Impressum</a>
+<a href="../en/privacy/" lang="en">English</a>
+</footer>
+</div>
+
 </body>
 </html>

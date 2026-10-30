@@ -3,26 +3,373 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GESAGT.</title>
+<title>GESAGT. Mitschrift auf dem iPhone</title>
 <meta name="description" content="Mitschrift ohne Cloud: Transkript, Zusammenfassung und Todos auf dem iPhone.">
 <link rel="icon" href="img/icon.png">
-<link rel="stylesheet" href="style.css">
+<style>
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url(fonts/source-serif-4-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url(fonts/source-serif-4-italic.woff2) format("woff2")}
+</style>
+<style>
+body{margin:0;background:#fff3e7;color:#0f1729;font-family:ui-serif,"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#c34112;text-underline-offset:3px}a:hover{color:#8f2e0b}
+::selection{background:#f6b8a1;color:#0f1729}
+:focus-visible{outline:2px solid #c34112;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.ui{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.label{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px;font-weight:600;color:#535868;letter-spacing:.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;border-radius:999px;background:#f4a68a;color:#151c2e;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;font-weight:600;text-decoration:none}
+.btn:hover{background:#f19776;color:#151c2e}
+.hero{display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start;padding-block:56px 120px}
+.hero-copy{flex:1 1 380px;min-width:0;padding-top:48px;position:sticky;top:24px}
+.appwrap{flex:0 1 430px;min-width:0;margin:0 0 0 auto}
+.app{position:relative;overflow:hidden;background:#fff3e7;color:#000;border-radius:36px;border:1px solid rgba(60,60,67,.14);box-shadow:0 24px 48px rgba(93,58,50,.16),0 4px 10px rgba(93,58,50,.08);padding:20px 22px 24px;box-sizing:border-box}
+.app-bar{display:flex;justify-content:flex-end}
+.glass{display:inline-flex;align-items:center;gap:22px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(60,60,67,.12);color:#c34112}
+.app .app-title{font-size:30px;font-weight:600;line-height:1.15;letter-spacing:0;margin:12px 0 0;max-width:none}
+.app-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.achip{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 14px;border-radius:999px;background:#fff;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#000}
+.app-h{font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;margin:22px 0 6px}
+.app-text{font-size:17px;line-height:1.45}
+.app-list{margin:0;padding-left:18px;font-size:17px;line-height:1.45}
+.acard{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;align-items:center;background:#fff;border-radius:16px;padding:6px 14px 6px 4px;margin-top:8px}
+.check{width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;padding:0;cursor:pointer}
+.box{width:22px;height:22px;border-radius:5px;border:2px solid #c34112;box-sizing:border-box;display:grid;place-items:center}
+.atodo{border:0;background:transparent;text-align:left;padding:8px 0;min-height:44px;cursor:pointer;color:inherit;font:inherit}
+.atext{display:block;font-family:ui-serif,"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.35}
+.ameta{display:block;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;margin-top:3px}
+.handoff{display:grid;place-items:center;color:#c34112}
+.app-tr summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:44px;margin-top:14px;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;cursor:pointer}
+.app-tr summary::-webkit-details-marker{display:none}
+.app-tr[open] summary svg{transform:rotate(180deg)}
+.tline{margin-top:12px;font-size:17px;line-height:1.4}
+.tline b{font:600 15px system-ui,-apple-system,"Segoe UI",sans-serif}
+.tline span{font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;margin-left:8px;font-variant-numeric:tabular-nums}
+.fertig{display:flex;align-items:center;justify-content:center;min-height:54px;margin-top:24px;border-radius:999px;background:#f4a68a;color:#151c2e;font:600 17px system-ui,-apple-system,"Segoe UI",sans-serif}
+.fcap{font:13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;text-align:center;margin-top:8px}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.18)}
+.asheet{position:absolute;left:8px;right:8px;bottom:8px;background:#fff3e7;border-radius:30px;padding:8px 18px 24px;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.grab{width:36px;height:5px;border-radius:3px;background:rgba(60,60,67,.3);margin:0 auto 6px}
+.shead{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center}
+.sclose{width:44px;height:44px;border-radius:50%;border:1px solid rgba(60,60,67,.12);background:rgba(255,255,255,.8);display:grid;place-items:center;cursor:pointer;color:#000;padding:0}
+.stitle{text-align:center;font:600 17px system-ui,-apple-system,"Segoe UI",sans-serif}
+.sgroup{background:#fff;border-radius:16px;margin-top:14px;padding:0 16px}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;border-top:1px solid rgba(60,60,67,.12);font:17px system-ui,-apple-system,"Segoe UI",sans-serif}
+.srow:first-child{border-top:0;font-family:ui-serif,"Source Serif 4",Georgia,serif}
+.sval{color:#c34112}
+.sdate{background:rgba(120,120,128,.12);border-radius:8px;padding:6px 10px}
+.said{margin-top:18px}
+.said-h,.said-t{font:13px system-ui,-apple-system,"Segoe UI",sans-serif;color:#3c3c43;font-variant-numeric:tabular-nums}
+.said-q{font-style:italic;font-size:17px;line-height:1.45;margin:4px 0}
+.cap{font:14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#535868;line-height:1.5;margin-top:14px;text-align:center}
+@keyframes sheetup{from{transform:translateY(32px)}to{transform:none}}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 14px;border-radius:999px;background:#fff3e7;font:15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#0f1729}
+.top{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:112px;border-top:1px solid #e6d5c4}
+.topno{font:600 14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#c34112;font-variant-numeric:tabular-nums;padding-top:14px}
+h1,h2{font-weight:600;margin:0;letter-spacing:-.015em}
+h1{font-size:58px;line-height:1.06}
+.h-big{font-size:56px;line-height:1.08}
+.h-close{font-size:48px;max-width:20ch}
+h2{font-size:42px;line-height:1.15;max-width:22ch}
+p{margin:0}
+.body{font-size:19px;line-height:1.6;max-width:62ch;color:#2a3142}
+.steps{list-style:none;margin:40px 0 0;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:22px 0;border-bottom:1px solid #e6d5c4;font-size:19px;line-height:1.6;max-width:820px}
+.steps li::before{counter-increment:s;content:counter(s) ".";font:600 15px system-ui,-apple-system,sans-serif;color:#c34112;padding-top:5px}
+.split{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;margin-top:40px}
+.split > *{flex:1 1 380px;min-width:0}
+pre{margin:0;padding:28px 30px;background:#0f1729;color:#e8e8ec;border-radius:12px;font:14px/1.7 ui-monospace,"SF Mono",Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.night{background:#0f1729;color:#e8e8ec;border-radius:12px;padding:56px;box-sizing:border-box;margin-top:40px}
+.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+.facts li{padding:18px 0;border-top:1px solid rgba(255,255,255,.14);font-size:18px;line-height:1.55}
+.facts li:nth-child(-n+2){border-top:0;padding-top:0}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:40px}
+.plans > div{padding:8px 48px 8px 0}
+.plans > div + div{padding:8px 0 8px 48px;border-left:1px solid #e6d5c4}
+.plans ul{margin:20px 0 0;padding:0 0 0 20px;font-size:18px;line-height:1.55}
+.plans li{padding:6px 0}
+.close{padding-block:120px 96px;border-top:1px solid #e6d5c4}
+.sign{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;margin-top:48px}
+.signline{flex:1 1 320px;border-bottom:1px solid #0f1729;padding-bottom:10px;font-size:26px;font-style:italic}
+.foot{display:flex;flex-wrap:wrap;gap:12px 28px;padding-block:32px 48px;border-top:1px solid #e6d5c4;font:15px system-ui,-apple-system,sans-serif;color:#535868}
+.foot a{color:#535868}.foot a:hover{color:#0f1729}
+@media (prefers-reduced-motion:no-preference){.asheet{animation:sheetup .25s ease-out}.app-tr summary svg{transition:transform .2s ease-out}}
+@media (max-width:760px){
+.wrap{padding-inline:16px}
+.hero{gap:40px;padding-block:24px 72px}.hero-copy{padding-top:16px;position:static}
+h1{font-size:42px}h2{font-size:32px}.h-big{font-size:38px}.h-close{font-size:36px}
+.appwrap{flex-basis:100%;margin:0}
+.app{border-radius:28px;padding:16px 14px 20px}
+.top{grid-template-columns:minmax(0,1fr);gap:8px;padding-block:72px}.topno{padding-top:0}
+.body,.steps li{font-size:17px}
+.steps li{grid-template-columns:36px minmax(0,1fr)}
+.night{padding:32px 20px}
+.facts{grid-template-columns:minmax(0,1fr)}.facts li:nth-child(2){border-top:1px solid rgba(255,255,255,.14);padding-top:18px}
+.plans{grid-template-columns:minmax(0,1fr)}
+.plans > div,.plans > div + div{padding:8px 0;border-left:0}
+.plans > div + div{margin-top:32px;padding-top:32px;border-top:1px solid #e6d5c4}
+.close{padding-block:72px 56px}
+}
+[hidden]{display:none!important}
+.check[aria-pressed="true"] .box{background:#c34112}
+.check[aria-pressed="false"] .box svg{display:none}
+.check[aria-pressed="true"]+.atodo .atext{text-decoration:line-through;color:#3c3c43}
+</style>
 </head>
 <body>
+<div style="width: 100%">
+<header class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 24px">
+<a href="./" style="font-size: 26px; font-weight: 600; color: #0f1729; text-decoration: none; letter-spacing: -0.01em">GESAGT.</a>
+<nav aria-label="Hauptmenü" class="ui" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 16px">
+<a href="datenschutz/" style="color: #0f1729">Datenschutz</a>
+<a href="support/" style="color: #0f1729">Support</a>
+<a href="en/" lang="en" style="color: #0f1729">English</a>
+</nav>
+</header>
+
 <main>
-<nav><a class="brand" href=""><img src="img/icon.png" alt="">GESAGT.</a><a href="datenschutz/">Datenschutz</a><a href="support/">Support</a><a href="en/">English</a></nav>
-<div class="hero"><img src="img/icon.png" alt="App-Icon von GESAGT.">
-<h1>GESAGT.</h1>
-<p class="lead">Nimmt Besprechungen, Telefonate und Diktate auf und schreibt daraus eine Notiz mit Transkript, Zusammenfassung und Todos. Alles läuft auf deinem iPhone.</p>
-<p class="meta">Für iPhone mit iOS 27. Bald im App Store.</p></div>
-<div class="shots"><img src="img/de-01-liste.jpg" alt="Liste der Notizen" loading="lazy"><img src="img/de-03-ergebnis.jpg" alt="Zusammenfassung mit Entscheidungen" loading="lazy"><img src="img/de-06-vault.jpg" alt="Obsidian-Vault wählen" loading="lazy"></div>
-<h2>Wer hat was gesagt</h2>
-<p>GESAGT. trennt die Sprecher und erkennt dich an deiner Stimme. Die anderen benennst du nach der Aufnahme. Jedes Todo verweist auf die Stelle im Gespräch, aus der es stammt.</p>
-<h2>Direkt in Obsidian</h2>
-<p>Jede Notiz landet als Markdown-Datei in deinem Vault, mit Frontmatter, Todos im Format des Tasks-Plugins und dem Transkript zum Aufklappen.</p>
-<h2>Ohne Konto und ohne Upload</h2>
-<p>Die App schickt keine Aufnahme und keinen Text an einen Server. Das Audio wird gelöscht, sobald die Notiz fertig ist. Einzelheiten stehen in der <a href="datenschutz/">Datenschutzerklärung</a>.</p>
-<footer><span>© 2026 Laszlo Endler</span><a href="datenschutz/">Datenschutz</a><a href="support/">Support</a><a href="impressum/">Impressum</a></footer>
+<section class="wrap hero" aria-labelledby="angebot">
+<div class="hero-copy">
+<h1 id="angebot">Das Protokoll schreibt sich auf dem iPhone.</h1>
+<p class="body" style="margin-top: 28px; font-size: 21px">GESAGT. nimmt Besprechungen, Telefonate und Diktate auf. Danach steht da, wer was gesagt hat, was entschieden wurde und wer bis wann was erledigt. Alles läuft auf dem Gerät, ohne Konto und ohne Upload.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 40px">
+<a class="btn" href="https://apps.apple.com/app/id6823530298">Im App Store laden</a>
+</div>
+<p class="ui" style="margin-top: 16px; font-size: 15px; line-height: 1.5; color: #535868; max-width: 40ch">Kostenlos laden. GESAGT. Pro kostet einmal 19,99 € und lässt sich 14 Tage kostenlos testen. Für iPhone mit iOS 27.</p>
+</div>
+
+<figure class="appwrap" style="margin-top: 0; margin-bottom: 0">
+<div class="app" aria-label="Beispiel: eine Notiz in GESAGT.">
+<div class="app-bar" aria-hidden="true"><span class="glass"><svg width="20" height="22" viewBox="0 0 20 22"><path d="M10 14V2M5.5 6.5L10 2l4.5 4.5M4 10H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="22" height="6" viewBox="0 0 22 6"><circle cx="3" cy="3" r="2.4" fill="currentColor"></circle><circle cx="11" cy="3" r="2.4" fill="currentColor"></circle><circle cx="19" cy="3" r="2.4" fill="currentColor"></circle></svg></span></div>
+<h2 class="app-title">Planung Messestand</h2>
+<div class="app-chips">
+<span class="achip">Ich</span>
+<span class="achip">Mara Lindqvist</span>
+<span class="achip" style="color: #c34112"><svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"></path></svg>Sprecher 3</span>
+</div>
+<h3 class="app-h">Zusammenfassung</h3>
+<p class="app-text">Der Messestand kommt auf die Eckfläche in Halle 4. Mara Lindqvist hat mit dem Veranstalter gesprochen, die zwölf Quadratmeter sind noch frei. Für die Rückwand holt Sprecher 3 neue Angebote ein, weil der bisherige Lieferant teurer geworden ist und drei Wochen Lieferzeit nennt.</p>
+<h3 class="app-h">Entscheidungen</h3>
+<ul class="app-list">
+<li>Der Stand kommt auf die Eckfläche in Halle 4.</li>
+<li>Die Flyer werden nachgedruckt.</li>
+</ul>
+<h3 class="app-h">Todos</h3>
+
+<div class="acard">
+<button type="button" class="check" aria-pressed="false" aria-label="Erledigt: Standfläche bestätigen"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<button type="button" class="atodo" aria-haspopup="dialog"><span class="atext">Standfläche bestätigen</span><span class="ameta">Mara Lindqvist · Di, 20.10.</span></button>
+<span class="handoff" title="Übergeben" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 15l6-6M10 9h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+
+<div class="acard">
+<button type="button" class="check" aria-pressed="false" aria-label="Erledigt: Angebot für die Rückwand einholen"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<button type="button" class="atodo" aria-haspopup="dialog"><span class="atext">Angebot für die Rückwand einholen</span><span class="ameta">Sprecher 3 · bis Ende der Woche</span></button>
+<span class="handoff" title="Übergeben" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 15l6-6M10 9h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+
+<div class="acard">
+<button type="button" class="check" aria-pressed="true" aria-label="Erledigt: Flyer nachdrucken"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<button type="button" class="atodo" aria-haspopup="dialog"><span class="atext">Flyer nachdrucken</span><span class="ameta">Ich · Fr, 23.10.</span></button>
+<span class="handoff" title="Übergeben" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 15l6-6M10 9h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+
+<details class="app-tr">
+<summary>Transkript<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
+
+<p class="tline"><b>Ich</b><span>00:04</span><br>Dann fangen wir an. Wir müssen heute die Standfläche für die Messe festlegen.</p>
+
+<p class="tline"><b>Mara Lindqvist</b><span>00:11</span><br>Ich habe mit dem Veranstalter gesprochen. Die Eckfläche in Halle 4 ist noch frei, zwölf Quadratmeter.</p>
+
+<p class="tline"><b>Sprecher 3</b><span>00:21</span><br>Für die Rückwand brauchen wir ein neues Angebot. Der alte Lieferant hat die Preise erhöht, und die Lieferzeit liegt jetzt bei drei Wochen. Ich frage bis Ende der Woche bei zwei anderen an.</p>
+
+<p class="tline"><b>Ich + Sprecher 3, gleichzeitig</b><span>00:36</span><br>Ja, genau, mach das.</p>
+
+<p class="tline"><b>Ich</b><span>00:39</span><br>Gut. Dann nehmen wir die Eckfläche. Mara, bestätigst du sie bis nächsten Dienstag?</p>
+
+<p class="tline"><b>Mara Lindqvist</b><span>00:47</span><br>Mache ich. Die Flyer sind fast alle weg, wir sollten nachdrucken.</p>
+
+<p class="tline"><b>Aufnahme unterbrochen</b><span>00:57</span><br></p>
+
+<p class="tline"><b>Ich</b><span>00:57</span><br>Die Flyer drucke ich bis Freitag nach. Wer am Stand hilft, klären wir noch.</p>
+
+</details>
+<div class="fertig" aria-hidden="true">Fertig</div>
+<p class="fcap">Löscht die Aufnahme. Die Notiz bleibt.</p>
+<div class="sheetbox" hidden>
+<div class="scrim" aria-hidden="true"></div>
+<div class="asheet" role="dialog" aria-labelledby="sheet-title">
+<div class="grab" aria-hidden="true"></div>
+<div class="shead">
+<button type="button" class="sclose" aria-label="Schließen"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button>
+<span id="sheet-title" class="stitle">Todo</span>
+<span aria-hidden="true"></span>
+</div>
+<div class="sgroup">
+<div class="srow"><span data-f="what"></span></div>
+<div class="srow"><span>Person</span><span class="sval"><span data-f="who"></span></span></div>
+<div class="srow" data-date><span>Datum</span><span class="sdate"><span data-f="date"></span></span></div>
+</div>
+<div class="said">
+<p class="said-h">Gesagt</p>
+<p class="said-q">„<span data-f="quote"></span>“</p>
+<p class="said-t">bei <span data-f="at"></span></p>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="cap">Beispiel. Tippe auf ein Todo: Die App zeigt, wo es gesagt wurde.</figcaption>
+</figure>
+</section>
+
+<section class="wrap top" aria-labelledby="top1">
+<span class="topno">TOP 1</span>
+<div>
+<h2 id="top1">Du nimmst auf, die App schreibt mit.</h2>
+<ol class="steps">
+<li><span>Tippe auf Aufnehmen und leg das iPhone auf den Tisch. Frag vorher alle, die mitreden. GESAGT. erinnert dich daran.</span></li>
+<li><span>Nach dem Gespräch erkennt die App die Sprache, Deutsch oder Englisch, trennt die Sprecher und schreibt die Notiz. Eine Besprechung bekommt Entscheidungen, offene Punkte und Todos mit Person und Frist. Ein Telefonat bekommt Anliegen und Vereinbarungen, ein Diktat geordnete Gedanken.</span></li>
+<li><span>Du tippst auf Fertig. Die Aufnahme wird gelöscht, die Notiz bleibt.</span></li>
+</ol>
+<p class="body" style="margin-top: 28px; font-style: italic">Findet die App für ein Todo keine Stelle im Gespräch, streicht sie es, bevor es in deiner Liste landet.</p>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="top2">
+<span class="topno">TOP 2</span>
+<div>
+<h2 id="top2" class="h-big">Im Transkript bist du „Ich“.</h2>
+<p class="body" style="margin-top: 28px">Deine Stimme liest du einmal beim Einrichten ein. Die anderen benennst du nach der Aufnahme, eine kurze Hörprobe hilft beim Zuordnen. Der Name steht dann überall, wo die Person vorkommt, auch bei ihren Todos.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 32px" aria-label="Beispiel: Sprecher in einer Notiz">
+<span class="chip" style="background: #fff">Ich</span>
+<span class="chip" style="background: #fff">Mara Lindqvist</span>
+<span class="chip" style="background: #fff; color: #c34112"><svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="currentColor"></path></svg>Sprecher 3</span>
+<span class="ui" style="font-size: 14px; color: #535868">Hörprobe abspielen, dann benennen</span>
+</div>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="top3">
+<span class="topno">TOP 3</span>
+<div>
+<h2 id="top3">Die Notiz landet in deinem Obsidian-Vault.</h2>
+<div class="split">
+<div>
+<p class="body">Du wählst einmal deinen Vault. Jede Notiz wird dort eine Markdown-Datei mit Frontmatter, die Todos im Format des Tasks-Plugins und das Transkript zum Aufklappen.</p>
+<p class="body" style="margin-top: 20px">Benennst du später jemanden um, schreibt die App dieselbe Datei neu. Was du in Obsidian selbst ergänzt hast, bleibt stehen.</p>
+<p class="ui" style="margin-top: 20px; font-size: 15px; line-height: 1.5; color: #535868">Teilen als Markdown geht immer. Automatisch in den Vault schreibt GESAGT. Pro.</p>
+</div>
+<pre aria-label="Beispiel einer Markdown-Datei">---
+date: 2026-10-13T14:30
+duration: 72
+type: besprechung
+speakers: [Ich, Mara Lindqvist, Sprecher 3]
+tags: [mitschrift]
+---
+# Planung Messestand
+
+## Entscheidungen
+
+- Der Stand kommt auf die Eckfläche in Halle 4.
+- Die Flyer werden nachgedruckt.
+
+## Todos
+
+- [ ] Standfläche bestätigen [[Mara Lindqvist]] 📅 2026-10-20
+- [ ] Angebot für die Rückwand einholen (Sprecher 3)
+- [ ] Flyer nachdrucken (Ich) 📅 2026-10-23
+
+&gt; [!note]- Transkript
+&gt; **Ich** (00:04): Dann fangen wir an.</pre>
+</div>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="top4">
+<span class="topno">TOP 4</span>
+<div>
+<h2 id="top4">Was im Raum gesagt wird, bleibt auf dem iPhone.</h2>
+<div class="night">
+<ul class="facts">
+<li>Die App lädt nichts hoch. Eine Notiz geht nur dorthin, wohin du sie schickst.</li>
+<li>Das Audio wird gelöscht, sobald du die Notiz abschließt, spätestens nach 24 Stunden.</li>
+<li>Der Verlauf reicht 30 Tage zurück, einstellbar, und ist vom iCloud-Backup ausgenommen.</li>
+<li>Auf Wunsch sperrt Face ID die App.</li>
+<li>Die Sprachmodelle lädt das System einmal von Apple. Danach geht alles auch im Flugmodus.</li>
+<li>Kein Konto, keine Anmeldung, kein Server, der mitliest.</li>
+</ul>
+<p class="ui" style="margin-top: 32px; font-size: 15px"><a href="datenschutz/" style="color: #f4a68a">Datenschutzerklärung lesen</a></p>
+</div>
+</div>
+</section>
+
+<section class="wrap top" aria-labelledby="top5">
+<span class="topno">TOP 5</span>
+<div>
+<h2 id="top5">Kostenlos anfangen, Pro einmal kaufen.</h2>
+<div class="plans">
+<div>
+<p style="font-size: 26px; font-weight: 600">Kostenlos</p>
+<ul>
+<li>Bis zu 10 Minuten am Stück</li>
+<li>Sprecher, Zusammenfassung und Todos</li>
+<li>Jede Notiz als Markdown teilen</li>
+</ul>
+</div>
+<div>
+<p style="font-size: 26px; font-weight: 600">Pro <span class="ui" style="font-size: 18px; font-weight: 600; color: #c34112; margin-left: 8px">19,99 € einmal</span></p>
+<ul>
+<li>Kein Abo, gilt für die ganze Familie</li>
+<li>Keine Zeitgrenze</li>
+<li>Notizen gehen automatisch nach Obsidian</li>
+<li>Die Wortliste liest Namen aus deinem Vault</li>
+<li>Todos an Erinnerungen oder JETZT. übergeben</li>
+<li>Starten per Action Button, Steuerzentrale, Widget, Kurzbefehl und Siri, auch bei gesperrtem iPhone</li>
+</ul>
+<p class="ui" style="margin-top: 16px; font-size: 15px; color: #535868">14 Tage kostenlos testen. Der Test endet von selbst.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="wrap close" aria-labelledby="schluss">
+<h2 id="schluss" class="h-close">Die nächste Besprechung protokolliert sich selbst.</h2>
+<div class="sign">
+<div class="signline" aria-hidden="true">GESAGT.</div>
+<a class="btn" href="https://apps.apple.com/app/id6823530298">Im App Store laden</a>
+</div>
+<p class="ui" style="margin-top: 20px; font-size: 15px; line-height: 1.55; color: #535868; max-width: 70ch">Für iPhone mit iOS 27. Zusammenfassung und Todos brauchen Apple Intelligence, ohne bekommst du das Transkript mit Sprechern.</p>
+</section>
 </main>
+
+<footer class="wrap foot">
+<span>© 2026 Laszlo Endler</span>
+<a href="datenschutz/">Datenschutz</a>
+<a href="support/">Support</a>
+<a href="impressum/">Impressum</a>
+<a href="en/" lang="en">English</a>
+</footer>
+</div>
+<script>
+(() => {
+  const T = [{"what": "Standfläche bestätigen", "who": "Mara Lindqvist", "date": "20.10.2026", "quote": "Mara, bestätigst du sie bis nächsten Dienstag?", "at": "00:39"}, {"what": "Angebot für die Rückwand einholen", "who": "Sprecher 3", "date": "", "quote": "Ich frage bis Ende der Woche bei zwei anderen an.", "at": "00:21"}, {"what": "Flyer nachdrucken", "who": "Ich", "date": "23.10.2026", "quote": "Die Flyer drucke ich bis Freitag nach.", "at": "00:57"}];
+  const box = document.querySelector('.sheetbox'), sheet = box.querySelector('.asheet');
+  let from = null;
+  const close = () => { box.hidden = true; if (from) from.focus(); };
+  document.querySelectorAll('.check').forEach((b) => b.addEventListener('click', () =>
+    b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true')));
+  document.querySelectorAll('.atodo').forEach((b, i) => b.addEventListener('click', () => {
+    const t = T[i];
+    sheet.querySelectorAll('[data-f]').forEach((el) => { el.textContent = t[el.dataset.f]; });
+    sheet.querySelector('[data-date]').hidden = !t.date;
+    from = b;
+    box.hidden = false;
+    sheet.querySelector('.sclose').focus();
+  }));
+  sheet.querySelector('.sclose').addEventListener('click', close);
+  box.querySelector('.scrim').addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !box.hidden) close(); });
+})();
+</script>
 </body>
 </html>

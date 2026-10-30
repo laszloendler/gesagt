@@ -5,30 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Support · GESAGT.</title>
 <meta name="description" content="Hilfe und Kontakt zu GESAGT.">
-<link rel="icon" href="../img/icon.png">
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" href=".img/icon.png">
+<style>
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:200 900;font-display:swap;src:url(.fonts/source-serif-4-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:200 900;font-display:swap;src:url(.fonts/source-serif-4-italic.woff2) format("woff2")}
+</style>
+<style>
+body{margin:0;background:#fff3e7;color:#0f1729;font-family:ui-serif,"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#c34112;text-underline-offset:3px}a:hover{color:#8f2e0b}
+::selection{background:#f6b8a1;color:#0f1729}
+:focus-visible{outline:2px solid #c34112;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.ui{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.nav a{color:#0f1729}.nav a[aria-current="page"]{color:#c34112;text-decoration-thickness:2px}
+.intro{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:64px 80px}
+.sec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding-block:56px 96px;border-top:1px solid #e6d5c4}
+.label{font:600 15px system-ui,-apple-system,"Segoe UI",sans-serif;color:#c34112;padding-top:6px}
+h1,h2{font-weight:600;margin:0;letter-spacing:-.015em}
+h1{font-size:54px;line-height:1.08}
+p{margin:0}
+.lead{font-size:23px;line-height:1.55;max-width:40ch;margin-top:20px}
+.mail{display:inline-block;margin-top:36px;font-size:34px;font-weight:600;letter-spacing:-.01em;line-height:1.2;overflow-wrap:anywhere}
+.hint{font-size:18px;line-height:1.65;color:#2a3142;max-width:56ch;margin-top:20px}
+.faq{max-width:760px}
+details{border-bottom:1px solid #e6d5c4}
+details:first-child{border-top:1px solid #e6d5c4}
+summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding-block:14px;cursor:pointer;font-size:22px;font-weight:600;line-height:1.3}
+summary::-webkit-details-marker{display:none}
+summary svg{flex:none;color:#c34112}
+details[open] summary svg{transform:rotate(180deg)}
+details p{font-size:18px;line-height:1.65;color:#2a3142;max-width:62ch;padding-bottom:24px}
+.foot{display:flex;flex-wrap:wrap;gap:12px 28px;padding-block:32px 48px;border-top:1px solid #e6d5c4;font:15px system-ui,-apple-system,sans-serif;color:#535868}
+.foot a{color:#535868}.foot a:hover{color:#0f1729}
+@media (prefers-reduced-motion:no-preference){summary svg{transition:transform .2s ease-out}}
+@media (max-width:760px){
+.wrap{padding-inline:16px}
+.intro,.sec{grid-template-columns:minmax(0,1fr);gap:8px}
+.intro{padding-block:32px 56px}.sec{padding-block:40px 64px}
+.label{padding-top:0;margin-bottom:8px}
+h1{font-size:38px}
+.lead{font-size:20px}
+.mail{font-size:26px}
+summary{font-size:19px}
+details p,.hint{font-size:17px}
+}
+</style>
 </head>
 <body>
-<main>
-<nav><a class="brand" href="../"><img src="../img/icon.png" alt="">GESAGT.</a><a href="../datenschutz/">Datenschutz</a><a href="../support/">Support</a><a href="../en/">English</a></nav>
-<h1>Support</h1>
-<p class="meta">Fragen, Fehler oder Wünsche zu GESAGT.</p>
-<div class="box"><p>Schreib mir an <a href="mailto:laszloendler@proton.me">laszloendler@proton.me</a>. Bei einem Fehler hilft es, wenn du dazuschreibst, welches iPhone du hast und was du gerade gemacht hast.</p></div>
+<div style="width: 100%">
+<header class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 24px">
+<a href="../" style="font-size: 26px; font-weight: 600; color: #0f1729; text-decoration: none; letter-spacing: -0.01em">GESAGT.</a>
+<nav aria-label="Hauptmenü" class="ui nav" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 16px">
+<a href="../datenschutz/">Datenschutz</a>
+<a href="../support/" aria-current="page">Support</a>
+<a href="../en/support/" lang="en">English</a>
+</nav>
+</header>
 
-<h2>Häufige Fragen</h2>
-<h3>Die Sprachmodelle laden nicht.</h3>
+<main>
+<section class="wrap intro" aria-labelledby="titel">
+<span aria-hidden="true"></span>
+<div>
+<h1 id="titel">Support</h1>
+<p class="lead">Fragen, Fehler oder Wünsche zu GESAGT.</p>
+<a class="mail" href="mailto:laszloendler@proton.me">laszloendler@proton.me</a>
+<p class="hint">Bei einem Fehler hilft es, wenn du dazuschreibst, welches iPhone du hast und was du gerade gemacht hast.</p>
+</div>
+</section>
+
+<section class="wrap sec" aria-labelledby="faq">
+<h2 id="faq" class="label">Häufige Fragen</h2>
+<div class="faq">
+<details open="">
+<summary>Die Sprachmodelle laden nicht.<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>iOS lädt die Modelle nach der Installation im Hintergrund. Das braucht eine Internetverbindung und freien Speicher. Lass die App im WLAN kurz offen. Danach ist kein Netz mehr nötig.</p>
-<h3>Läuft die Aufnahme weiter, wenn ich das iPhone sperre?</h3>
+</details>
+<details>
+<summary>Läuft die Aufnahme weiter, wenn ich das iPhone sperre?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>Ja. Die Aufnahme läuft im Hintergrund weiter und erscheint in der Dynamic Island und auf dem Sperrbildschirm.</p>
-<h3>Wie verbinde ich meinen Obsidian-Vault?</h3>
+</details>
+<details>
+<summary>Wie verbinde ich meinen Obsidian-Vault?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>In den Einstellungen unter „Vault“ wählst du den Ordner deines Vaults. GESAGT. legt dort einen Ordner „Mitschriften“ an. Das automatische Schreiben in den Vault gehört zu Pro, teilen kannst du jede Notiz auch ohne Pro.</p>
-<h3>Wie lösche ich mein Stimmprofil?</h3>
+</details>
+<details>
+<summary>Wie lösche ich mein Stimmprofil?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>In den Einstellungen mit „Stimmprofil löschen“. Danach erscheinst du im Transkript als nummerierter Sprecher, bis du deine Stimme neu einlernst.</p>
-<h3>Ich habe Pro gekauft, aber es ist nicht freigeschaltet.</h3>
+</details>
+<details>
+<summary>Ich habe Pro gekauft, aber es ist nicht freigeschaltet.<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>Tippe im Pro-Bereich der App auf „Kauf wiederherstellen“ und melde dich mit derselben Apple-ID an, mit der du gekauft hast. Pro gilt über die Familienfreigabe auch für deine Familie.</p>
-<h3>Wie bekomme ich mein Geld zurück?</h3>
+</details>
+<details>
+<summary>Wie bekomme ich mein Geld zurück?<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
 <p>Erstattungen laufen über Apple unter <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. Ich habe darauf keinen Zugriff.</p>
-<footer><span>© 2026 Laszlo Endler</span><a href="../datenschutz/">Datenschutz</a><a href="../support/">Support</a><a href="../impressum/">Impressum</a></footer>
+</details>
+</div>
+</section>
 </main>
+
+<footer class="wrap foot">
+<span>© 2026 Laszlo Endler</span>
+<a href="../datenschutz/">Datenschutz</a>
+<a href="../support/" aria-current="page">Support</a>
+<a href="../impressum/">Impressum</a>
+<a href="../en/support/" lang="en">English</a>
+</footer>
+</div>
+
 </body>
 </html>
