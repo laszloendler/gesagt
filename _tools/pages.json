@@ -1,0 +1,9 @@
+{
+ "Main.dc.html": {"path": "", "title": "GESAGT. Mitschrift auf dem iPhone", "desc": "Mitschrift ohne Cloud: Transkript, Zusammenfassung und Todos auf dem iPhone."},
+ "Datenschutz.dc.html": {"path": "datenschutz/", "title": "Datenschutz · GESAGT.", "desc": "Datenschutzerklärung der App GESAGT."},
+ "Support.dc.html": {"path": "support/", "title": "Support · GESAGT.", "desc": "Hilfe und Kontakt zu GESAGT."},
+ "Impressum.dc.html": {"path": "impressum/", "title": "Impressum · GESAGT.", "desc": "Impressum von GESAGT."},
+ "Start-en.dc.html": {"path": "en/", "title": "GESAGT. Meeting notes on your iPhone", "desc": "Meeting notes, no cloud: transcript, summary and to-dos on your iPhone."},
+ "Privacy-en.dc.html": {"path": "en/privacy/", "title": "Privacy · GESAGT.", "desc": "Privacy policy of the GESAGT. app"},
+ "Support-en.dc.html": {"path": "en/support/", "title": "Support · GESAGT.", "desc": "Help and contact for GESAGT."}
+}
